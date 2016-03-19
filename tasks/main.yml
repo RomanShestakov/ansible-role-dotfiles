@@ -10,6 +10,6 @@
     mode: u=rwX,g=rX,o=rX
     recurse: yes
 - name: DOTFILES | install dotfiles
-  command: "/tmp/dotfiles/bootstrap.sh -f /home/vagrant"
+  command: "/tmp/dotfiles/bootstrap.sh -f -d /home/vagrant"
   become: yes
   when: dotfiles_downloaded.changed
