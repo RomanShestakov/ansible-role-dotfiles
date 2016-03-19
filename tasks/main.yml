@@ -1,15 +1,10 @@
 # meta/main.yml
 
 - name: DOTFILES | get dotfiles from git repository
-  git: repo={{ dotfiles_repo_url }} dest="/tmp/dotfiles" accept_hostkey=yes
+  git: repo={{ dotfiles_repo_url }} dest={{ dotfiles_tmp }} accept_hostkey=yes
   become: yes
   register: dotfiles_downloaded
-- name: DOTFILES | make dir executable
-  file:
-    path: "/tmp/dotfiles"
-    mode: u=rwX,g=rX,o=rX
-    recurse: yes
 - name: DOTFILES | install dotfiles
-  command: "/tmp/dotfiles/bootstrap.sh -f -d /home/vagrant"
+  command: {{ dotfiles_tmp }}/bootstrap.sh -f -d {{ dotfiles_dest }}
   become: yes
   when: dotfiles_downloaded.changed
