@@ -4,6 +4,11 @@
   git: repo={{ dotfiles_repo_url }} dest="/tmp/dotfiles" accept_hostkey=yes
   become: yes
   register: dotfiles_downloaded
+- name: Make my directory tree readable
+  file:
+    path: "/tmp/dotfiles"
+    mode: u=rwX,g=rX,o=rX
+    recurse: yes
 - name: DOTFILES | install dotfiles
   command: "/tmp/dotfiles/bootstrap.sh -f"
   become: yes
