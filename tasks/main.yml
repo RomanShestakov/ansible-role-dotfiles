@@ -5,6 +5,6 @@
   become: yes
   register: dotfiles_downloaded
 - name: DOTFILES | install dotfiles
-  command: {{ dotfiles_tmp }}/bootstrap.sh -f -d {{ dotfiles_dest }}
+  command: "{{ dotfiles_tmp }}/bootstrap.sh -f -d {{ dotfiles_dest }}"
   become: yes
   when: dotfiles_downloaded.changed
