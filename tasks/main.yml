@@ -2,9 +2,9 @@
 
 - name: DOTFILES | get dotfiles from git repository
   git: repo={{ dotfiles_repo_url }} dest={{ dotfiles_tmp }} accept_hostkey=yes
-  become: yes
+  sudo: False
   register: dotfiles_downloaded
 - name: DOTFILES | install dotfiles
   command: "{{ dotfiles_tmp }}/bootstrap.sh -f -d {{ dotfiles_dest }}"
-  become: yes
+  sudo: False
   when: dotfiles_downloaded.changed
