@@ -7,4 +7,4 @@
 - name: DOTFILES | install dotfiles
   command: "{{ dotfiles_tmp }}/bootstrap.sh -f -d {{ dotfiles_dest }}"
   sudo: False
-  when: dotfiles_downloaded.changed
+  when: dotfiles_downloaded.changed and when {{ run_bootstrap }}
