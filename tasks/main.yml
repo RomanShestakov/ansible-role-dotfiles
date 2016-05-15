@@ -1,11 +1,13 @@
 # meta/main.yml
 
 - name: DOTFILES | get dotfiles from git repository
-  git: repo={{ dotfiles_repo_url }} dest={{ dotfiles_tmp }} accept_hostkey=yes
-  sudo: False
-  #register: dotfiles_downloaded_{{ dotfiles_repo_url }}
+  git: repo={{ dotfiles_repo_url }}
+       dest={{ dotfiles_tmp }}
+       accept_hostkey=yes
+  become: no
+  register: dotfiles_downloaded
+
 - name: DOTFILES | install dotfiles
   command: "{{ dotfiles_tmp }}/bootstrap.sh -f -d {{ dotfiles_dest }}"
-  sudo: False
-  when: "{{ run_bootstrap }}"
-  #dotfiles_downloaded_{{ dotfiles_repo_url }}.changed and {{ run_bootstrap }}
+  become: no
+  when: dotfiles_downloaded.changed
