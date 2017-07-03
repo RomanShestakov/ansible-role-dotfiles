@@ -4,6 +4,7 @@
   git: repo={{ dotfiles_repo_url }}
        dest={{ dotfiles_tmp }}
        accept_hostkey=yes
+       update=no
   become: no
   register: dotfiles_downloaded
 
