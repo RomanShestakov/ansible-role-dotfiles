@@ -12,5 +12,5 @@ galaxy_info:
   categories:
   - system
 
-dependencies:
-  - {role: geerlingguy.git, tags: git }
+# dependencies:
+#   - {role: geerlingguy.git, tags: git }
