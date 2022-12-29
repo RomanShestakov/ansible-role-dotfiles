@@ -1,12 +1,4 @@
 # meta/main.yml
 
-- name: DOTFILES | get dotfiles from git repository
-  git: repo={{ dotfiles_repo_url }}
-       dest={{ dotfiles_tmp }}
-       accept_hostkey=yes
-       update=no
-  register: dotfiles_downloaded
-
-- name: DOTFILES | install dotfiles
-  command: "{{ dotfiles_tmp }}/bootstrap.sh -f -d {{ dotfiles_dest }}"
-  when: dotfiles_downloaded.changed
+- include: 'dotfiles.yml'
+- include: 'emacs.yml'

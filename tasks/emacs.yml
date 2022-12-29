@@ -1,0 +1,14 @@
+# meta/emacs.yml
+
+- name: EMACS.D | get username
+  command:
+    cmd: "id"
+  register: whoami
+
+- name: EMACS.D | get .emacs.d from git repository
+  become: yes
+  become_user: "{{ whoami }}"
+  git: repo={{ emacs_repo_url }}
+       dest={{ dest }}
+       accept_hostkey=yes
+       update=no
