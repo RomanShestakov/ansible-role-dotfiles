@@ -1,17 +1,17 @@
 # meta/emacs.yml
 
-- name: EMACS.D | get username
-  command:
-    cmd: "id"
-  register: whoami
+# - name: EMACS.D | get username
+#   command:
+#     cmd: "id"
+#   register: whoami
 
-- name: EMACS.D | print name
-  debug:
-    msg: "{{ whoami }}"
+# - name: EMACS.D | print name
+#   debug:
+#     msg: "{{ whoami }}"
 
 - name: EMACS.D | get .emacs.d from git repository
   become: yes
-  become_user: "{{ whoami }}"
+  become_user: "{{ ansible_user }}"
   git: repo="{{ emacs_repo_url }}"
        dest="{{ emacs_dest }}"
        accept_hostkey=yes
