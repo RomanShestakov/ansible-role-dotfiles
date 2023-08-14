@@ -13,7 +13,7 @@
   register: dotfiles_downloaded
 
 - name: DOTFILES | install dotfiles
-  become: yes
-  become_user: "{{ ansible_user }}"
+  # become: yes
+  # become_user: "{{ ansible_user }}"
   command: "{{ dotfiles_tmp }}/bootstrap.sh -f -d {{ dotfiles_dest }}"
   when: dotfiles_downloaded.changed
